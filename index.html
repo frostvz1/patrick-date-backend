@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08080a">
+
+<title>Para Patrick ♥</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 50% 35%, #25252b 0%, #0b0b0d 58%, #050506 100%);
+    color: #f5f5f5;
+    font-family: Georgia, "Times New Roman", serif;
+    overflow-x: hidden;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.background-heart {
+    position: fixed;
+    color: rgba(255,255,255,.035);
+    font-size: 100px;
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+}
+
+.h1 { top: 10%; left: 8%; }
+.h2 { top: 70%; right: 8%; animation-delay: 2s; }
+.h3 { top: 40%; right: 20%; font-size: 50px; animation-delay: 4s; }
+
+@keyframes float {
+    0%,100% {
+        transform: translateY(0) rotate(-8deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(8deg);
+    }
+}
+
+.screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 25px;
+}
+
+.intro {
+    width: min(90%, 600px);
+}
+
+.envelope {
+    width: 90px;
+    height: 65px;
+    border: 1px solid #777;
+    margin: 0 auto 35px;
+    position: relative;
+    animation: envelopePulse 2.5s ease-in-out infinite;
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    top: 7px;
+    height: 40px;
+    border-left: 1px solid #777;
+    border-bottom: 1px solid #777;
+    transform: rotate(-45deg);
+    transform-origin: left top;
+}
+
+.envelope::after {
+    content: "";
+    position: absolute;
+    right: 5px;
+    top: 7px;
+    width: 52px;
+    height: 40px;
+    border-right: 1px solid #777;
+    border-bottom: 1px solid #777;
+    transform: rotate(45deg);
+    transform-origin: right top;
+}
+
+@keyframes envelopePulse {
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.small {
+    color: #888;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.name {
+    font-size: clamp(38px, 11vw, 68px);
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+
+.typewriter {
+    min-height: 55px;
+    max-width: 450px;
+    margin: 25px auto 35px;
+    color: #aaa;
+    line-height: 1.7;
+}
+
+.primary {
+    border: 1px solid #888;
+    background: #f5f5f5;
+    color: #111;
+    padding: 15px 34px;
+    border-radius: 5px;
+    transition: .25s;
+}
+
+.primary:hover {
+    transform: scale(1.06);
+}
+
+.question {
+    width: min(94%, 700px);
+}
+
+.question .heart {
+    font-size: 45px;
+    margin-bottom: 25px;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    15% { transform: scale(1.18); }
+    30% { transform: scale(1); }
+}
+
+.question h1 {
+    font-size: clamp(25px, 7vw, 48px);
+    line-height: 1.2;
+}
+
+.question p {
+    color: #999;
+    margin: 18px 0 45px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    min-height: 55px;
+}
+
+.choice {
+    border: 0;
+    padding: 14px 35px;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+#sim {
+    background: #f5f5f5;
+    color: #111;
+}
+
+#nao {
+    background: #26262a;
+    color: white;
+    transition: .08s;
+}
+
+#nao.fugindo {
+    position: fixed;
+    z-index: 9999;
+}
+
+#mensagem {
+    min-height: 25px;
+    margin-top: 35px;
+    color: #b32632;
+    font-size: 14px;
+}
+
+.form-area {
+    width: min(92%, 560px);
+    padding: 50px 0;
+    text-align: left;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.form-title .heart {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.form-title h2 {
+    font-size: clamp(28px, 7vw, 42px);
+    line-height: 1.2;
+}
+
+.form-title p {
+    color: #999;
+    margin-top: 12px;
+}
+
+.progress {
+    height: 3px;
+    background: #29292e;
+    margin-bottom: 35px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 25%;
+    background: #f5f5f5;
+    transition: .4s;
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+    animation: slide .4s ease;
+}
+
+@keyframes slide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.step-number {
+    color: #777;
+    font-size: 10px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+}
+
+.step h3 {
+    font-size: 29px;
+    margin-bottom: 25px;
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+.field label {
+    display: block;
+    color: #ccc;
+    margin-bottom: 8px;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    background: #151519;
+    color: white;
+    border: 1px solid #303036;
+    border-radius: 6px;
+    padding: 14px;
+    outline: none;
+}
+
+.field textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: #777;
+}
+
+.step-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.step-buttons button {
+    flex: 1;
+    padding: 14px;
+    border-radius: 6px;
+}
+
+.back {
+    background: transparent;
+    color: white;
+    border: 1px solid #333;
+}
+
+.next {
+    background: #f5f5f5;
+    color: #111;
+    border: 1px solid #f5f5f5;
+}
+
+.result-area {
+    width: min(94%, 700px);
+    padding: 35px 0;
+}
+
+.document {
+    background: #eeeae0;
+    color: #171717;
+    padding: 55px 35px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 25px 70px rgba(0,0,0,.65);
+}
+
+.document::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid #aaa69d;
+}
+
+.document > * {
+    position: relative;
+}
+
+.registration {
+    font-family: Arial, sans-serif;
+    color: #666;
+    font-size: 9px;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.document-heart {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.document h2 {
+    font-size: clamp(25px, 6vw, 38px);
+    line-height: 1.25;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    color: #555;
+    font-style: italic;
+    margin-top: 12px;
+}
+
+.line {
+    width: 90px;
+    height: 1px;
+    background: #777;
+    margin: 25px auto;
+}
+
+.names {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+.details {
+    text-align: left;
+    margin-top: 25px;
+}
+
+.detail {
+    padding: 13px 0;
+    border-bottom: 1px solid #c7c3b9;
+}
+
+.detail strong {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.detail span {
+    font-size: 16px;
+    word-break: break-word;
+}
+
+.status {
+    margin-top: 30px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.signatures {
+    display: flex;
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.signature {
+    width: 50%;
+    padding-top: 30px;
+    border-top: 1px solid #555;
+    font-size: 13px;
+}
+
+.signature-name {
+    margin-top: 7px;
+    font-size: 11px;
+    color: #666;
+}
+
+.print {
+    margin-top: 35px;
+    padding: 14px 25px;
+    border: 0;
+    border-radius: 6px;
+    background: #111;
+    color: white;
+}
+
+.final {
+    color: #888;
+    margin-top: 20px;
+    line-height: 1.7;
+}
+
+.final strong {
+    color: #ccc;
+    font-size: 18px;
+}
+
+.fade {
+    animation: fade .8s ease;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width:500px) {
+
+    .buttons {
+        gap: 10px;
+    }
+
+    .choice {
+        padding: 13px 25px;
+    }
+
+    .document {
+        padding: 45px 24px;
+    }
+
+    .signatures {
+        flex-direction: column;
+    }
+
+    .signature {
+        width: 100%;
+    }
+}
+
+@media print {
+
+    body {
+        background: white;
+    }
+
+    .result-area {
+        width: 100%;
+        padding: 0;
+    }
+
+    .document {
+        min-height: 100vh;
+        box-shadow: none;
+    }
+
+    .print,
+    .final {
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background-heart h1">♥</div>
+<div class="background-heart h2">♥</div>
+<div class="background-heart h3">♥</div>
+
+<section id="intro" class="screen">
+
+<div class="intro fade">
+
+<div class="envelope"></div>
+
+<div class="small">
+Uma mensagem para
+</div>
+
+<div class="name">
+Patrick
+</div>
+
+<p class="typewriter" id="typewriter"></p>
+
+<button class="primary" id="continuar">
+CONTINUAR
+</button>
+
+</div>
+
+</section>
+
+<section id="pergunta" class="screen hidden">
+
+<div class="question fade">
+
+<div class="heart">♥</div>
+
+<h1>
+Patrick Gabriel Jacinto Nunes
+</h1>
+
+<p>
+Quer sair comigo?
+</p>
+
+<div class="buttons">
+
+<button class="choice" id="sim">
+SIM
+</button>
+
+<button class="choice" id="nao">
+NÃO
+</button>
+
+</div>
+
+<div id="mensagem"></div>
+
+</div>
+
+</section>
+
+<section id="formulario" class="screen hidden">
+
+<div class="form-area fade">
+
+<div class="form-title">
+
+<div class="heart">♥</div>
+
+<h2>
+Então vamos marcar isso.
+</h2>
+
+<p>
+Vamos oficializar os detalhes do encontro.
+</p>
+
+</div>
+
+<div class="progress">
+<div class="progress-bar" id="progress"></div>
+</div>
+
+<div class="step active" id="step1">
+
+<div class="step-number">
+ETAPA 01 / 04
+</div>
+
+<h3>
+Quando?
+</h3>
+
+<div class="field">
+
+<label>
+Data
+</label>
+
+<input
+type="date"
+id="data"
+min="2026-09-23">
+
+</div>
+
+<div class="field">
+
+<label>
+Horário
+</label>
+
+<input type="time" id="hora">
+
+</div>
+
+<div class="step-buttons">
+
+<button class="next" id="next1">
+CONTINUAR
+</button>
+
+</div>
+
+</div>
+
+<div class="step" id="step2">
+
+<div class="step-number">
+ETAPA 02 / 04
+</div>
+
+<h3>
+Onde?
+</h3>
+
+<div class="field">
+
+<label>
+Local do encontro
+</label>
+
+<input
+type="text"
+id="local"
+placeholder="Onde vamos?">
+
+</div>
+
+<div class="step-buttons">
+
+<button class="back" id="back2">
+VOLTAR
+</button>
+
+<button class="next" id="next2">
+CONTINUAR
+</button>
+
+</div>
+
+</div>
+
+<div class="step" id="step3">
+
+<div class="step-number">
+ETAPA 03 / 04
+</div>
+
+<h3>
+O traje.
+</h3>
+
+<div class="field">
+
+<label>
+Que roupa você vai usar?
+</label>
+
+<input
+type="text"
+id="roupa"
+placeholder="Descreva seu traje">
+
+</div>
+
+<div class="step-buttons">
+
+<button class="back" id="back3">
+VOLTAR
+</button>
+
+<button class="next" id="next3">
+CONTINUAR
+</button>
+
+</div>
+
+</div>
+
+<div class="step" id="step4">
+
+<div class="step-number">
+ETAPA 04 / 04
+</div>
+
+<h3>
+Mais alguma coisa?
+</h3>
+
+<div class="field">
+
+<label>
+Observações
+</label>
+
+<textarea
+id="observacoes"
+placeholder="Escreva alguma coisa..."></textarea>
+
+</div>
+
+<div class="step-buttons">
+
+<button class="back" id="back4">
+VOLTAR
+</button>
+
+<button class="next" id="confirmar">
+CONFIRMAR ENCONTRO
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="resultado" class="screen hidden">
+
+<div class="result-area fade">
+
+<div class="document">
+
+<div class="registration">
+REGISTRO Nº <span id="registro">001</span>
+</div>
+
+<div class="document-heart">
+♥
+</div>
+
+<h2>
+COMPROMISSO OFICIAL
+<br>
+DE ENCONTRO
+</h2>
+
+<p class="subtitle">
+Registro de compromisso afetivo
+</p>
+
+<div class="line"></div>
+
+<div class="names">
+
+<strong>
+Patrick Gabriel Jacinto Nunes
+</strong>
+
+<br>
+
+<span>
+&
+</span>
+
+<br>
+
+<strong>
+Samuel Ferreira Duarte
+</strong>
+
+</div>
+
+<div class="line"></div>
+
+<div class="details">
+
+<div class="detail">
+<strong>DATA</strong>
+<span id="resultadoData">—</span>
+</div>
+
+<div class="detail">
+<strong>HORÁRIO</strong>
+<span id="resultadoHora">—</span>
+</div>
+
+<div class="detail">
+<strong>LOCAL</strong>
+<span id="resultadoLocal">—</span>
+</div>
+
+<div class="detail">
+<strong>TRAJE ESCOLHIDO</strong>
+<span id="resultadoRoupa">—</span>
+</div>
+
+<div class="detail">
+<strong>OBSERVAÇÕES</strong>
+<span id="resultadoObservacoes">—</span>
+</div>
+
+</div>
+
+<div class="status">
+ENCONTRO CONFIRMADO
+</div>
+
+<div class="signatures">
+
+<div class="signature">
+Assinatura de Patrick
+<div class="signature-name">
+Patrick Gabriel Jacinto Nunes
+</div>
+</div>
+
+<div class="signature">
+Assinatura de Samuel
+<div class="signature-name">
+Samuel Ferreira Duarte
+</div>
+</div>
+
+</div>
+
+<button class="print" id="imprimir">
+IMPRIMIR / SALVAR COMO PDF
+</button>
+
+</div>
+
+<div class="final">
+
+<strong>
+Encontro oficialmente marcado.
+</strong>
+
+<br>
+
+Documento exclusivamente recreativo e romântico.
+<br>
+♥
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+const texto =
+"Antes de continuar, preciso fazer uma pergunta.";
+
+const typewriter =
+document.getElementById("typewriter");
+
+let letra = 0;
+
+function escrever() {
+
+if (letra < texto.length) {
+
+typewriter.textContent += texto.charAt(letra);
+
+letra++;
+
+setTimeout(escrever, 45);
+
+}
+
+}
+
+escrever();
+
+const intro =
+document.getElementById("intro");
+
+const pergunta =
+document.getElementById("pergunta");
+
+const formulario =
+document.getElementById("formulario");
+
+const resultado =
+document.getElementById("resultado");
+
+document
+.getElementById("continuar")
+.addEventListener("click", function() {
+
+intro.classList.add("hidden");
+pergunta.classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+});
+
+const nao =
+document.getElementById("nao");
+
+const mensagem =
+document.getElementById("mensagem");
+
+let tentativas = 0;
+
+const frases = [
+"Tem certeza?",
+"Patrick...",
+"Você realmente tentou?",
+"Esse botão não quer ser clicado.",
+"Não adianta correr atrás dele.",
+"Patrick, por favor.",
+"Ele já está fugindo de você.",
+"Você ainda está tentando?",
+"Desiste do NÃO.",
+"O botão venceu.",
+"Isso já está ficando constrangedor.",
+"Você sabe qual botão deveria apertar."
+];
+
+function fugir() {
+
+tentativas++;
+
+nao.classList.add("fugindo");
+
+const margem = 15;
+
+const maxX =
+window.innerWidth -
+nao.offsetWidth -
+margem;
+
+const maxY =
+window.innerHeight -
+nao.offsetHeight -
+margem;
+
+const x =
+Math.random() *
+Math.max(maxX, margem);
+
+const y =
+Math.random() *
+Math.max(maxY, margem);
+
+nao.style.left = x + "px";
+nao.style.top = y + "px";
+
+mensagem.textContent =
+frases[
+Math.min(
+tentativas - 1,
+frases.length - 1
+)
+];
+
+}
+
+nao.addEventListener(
+"mouseenter",
+fugir
+);
+
+nao.addEventListener(
+"touchstart",
+function(event) {
+
+event.preventDefault();
+fugir();
+
+}
+);
+
+nao.addEventListener(
+"click",
+fugir
+);
+
+document
+.getElementById("sim")
+.addEventListener("click", function() {
+
+pergunta.classList.add("hidden");
+formulario.classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+});
+
+function mostrarEtapa(numero) {
+
+document
+.querySelectorAll(".step")
+.forEach(function(step) {
+
+step.classList.remove("active");
+
+});
+
+document
+.getElementById("step" + numero)
+.classList.add("active");
+
+document
+.getElementById("progress")
+.style.width =
+(numero * 25) + "%";
+
+window.scrollTo(0,0);
+
+}
+
+function validar(numero) {
+
+if (numero === 1) {
+
+const data =
+document.getElementById("data").value;
+
+const hora =
+document.getElementById("hora").value;
+
+if (!data || !hora) {
+
+alert(
+"Escolha a data e o horário."
+);
+
+return false;
+
+}
+
+if (data < "2026-09-23") {
+
+alert(
+"A data precisa ser posterior ao dia 22/09/2026."
+);
+
+return false;
+
+}
+
+}
+
+if (numero === 2) {
+
+if (
+!document
+.getElementById("local")
+.value
+.trim()
+) {
+
+alert(
+"Informe o local do encontro."
+);
+
+return false;
+
+}
+
+}
+
+if (numero === 3) {
+
+if (
+!document
+.getElementById("roupa")
+.value
+.trim()
+) {
+
+alert(
+"Informe a roupa que você vai usar."
+);
+
+return false;
+
+}
+
+}
+
+return true;
+
+}
+
+document
+.getElementById("next1")
+.addEventListener("click", function() {
+
+if (validar(1)) {
+mostrarEtapa(2);
+}
+
+});
+
+document
+.getElementById("back2")
+.addEventListener("click", function() {
+
+mostrarEtapa(1);
+
+});
+
+document
+.getElementById("next2")
+.addEventListener("click", function() {
+
+if (validar(2)) {
+mostrarEtapa(3);
+}
+
+});
+
+document
+.getElementById("back3")
+.addEventListener("click", function() {
+
+mostrarEtapa(2);
+
+});
+
+document
+.getElementById("next3")
+.addEventListener("click", function() {
+
+if (validar(3)) {
+mostrarEtapa(4);
+}
+
+});
+
+document
+.getElementById("back4")
+.addEventListener("click", function() {
+
+mostrarEtapa(3);
+
+});
+
+document
+.getElementById("confirmar")
+.addEventListener("click", async function() {
+
+    const data =
+        document.getElementById("data").value;
+
+    const hora =
+        document.getElementById("hora").value;
+
+    const local =
+        document
+        .getElementById("local")
+        .value
+        .trim();
+
+    const roupa =
+        document
+        .getElementById("roupa")
+        .value
+        .trim();
+
+    const observacoes =
+        document
+        .getElementById("observacoes")
+        .value
+        .trim();
+
+    if (!data || !hora || !local || !roupa) {
+
+        alert(
+            "Preencha os campos obrigatórios."
+        );
+
+        return;
+    }
+
+    if (data < "2026-09-23") {
+
+        alert(
+            "A data precisa ser posterior ao dia 22/09/2026."
+        );
+
+        return;
+    }
+
+    const botao =
+        document.getElementById("confirmar");
+
+    botao.disabled = true;
+    botao.textContent = "GERANDO PDF...";
+
+    try {
+
+        const resposta = await fetch(
+            "https://patrick-date-backend.onrender.com/gerar-pdf",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    data,
+                    hora,
+                    local,
+                    roupa,
+                    observacoes
+                })
+            }
+        );
+
+        const resultado =
+            await resposta.json();
+
+        if (!resposta.ok || !resultado.sucesso) {
+
+            throw new Error(
+                resultado.erro ||
+                "Não foi possível gerar o PDF."
+            );
+
+        }
+
+        const dataFormatada =
+            new Date(
+                data + "T00:00:00"
+            ).toLocaleDateString(
+                "pt-BR"
+            );
+
+        document.getElementById(
+            "resultadoData"
+        ).textContent =
+            dataFormatada;
+
+        document.getElementById(
+            "resultadoHora"
+        ).textContent =
+            hora;
+
+        document.getElementById(
+            "resultadoLocal"
+        ).textContent =
+            local;
+
+        document.getElementById(
+            "resultadoRoupa"
+        ).textContent =
+            roupa;
+
+        document.getElementById(
+            "resultadoObservacoes"
+        ).textContent =
+            observacoes || "Nenhuma.";
+
+        document.getElementById(
+            "registro"
+        ).textContent =
+            resultado.registro;
+
+        formulario.classList.add("hidden");
+
+        resultado.classList.remove("hidden");
+
+        window.scrollTo(0, 0);
+
+        alert(
+            "Encontro confirmado e PDF gerado."
+        );
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        alert(
+            "Não foi possível conectar ao servidor.\n\n" +
+            "Verifique se o backend está funcionando."
+        );
+
+    } finally {
+
+        botao.disabled = false;
+        botao.textContent = "CONFIRMAR ENCONTRO";
+
+    }
+
+});
+
+
+document
+.getElementById("imprimir")
+.addEventListener("click", function() {
+
+window.print();
+
+});
+
+</script>
+
+</body>
+</html>
